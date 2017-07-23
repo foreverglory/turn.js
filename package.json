@@ -1,0 +1,21 @@
+{
+  "name": "turnjs",
+  "version": "4.0.0",
+  "description": "![Bilby Stampede](http://turnjs.com/pics/small-turnjs-letters.png)",
+  "main": "turn.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/foreverglory/turnjs.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/foreverglory/turnjs/issues"
+  },
+  "homepage": "https://github.com/foreverglory/turnjs#readme"
+}
