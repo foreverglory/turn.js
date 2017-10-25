@@ -741,6 +741,47 @@ turnMethods = {
   
   },
 
+  movePage: function(page, next){
+    console.log('move...');
+    var that = this,
+      data = this.data(), 
+      odd = next%2,
+      single = data.display=='single',
+      className = (odd) ? ' odd ' : ' even ';
+    if (data.pageObjs[page]) {
+        // Stop animations
+        this.turn('stop');
+        data.pageObjs[next] = data.pageObjs[page].
+        removeClass('p' + page + ' odd even').
+        addClass('p' + next + className);
+        if (data.pagePlace[page] && data.pageWrap[page]) {
+          data.pagePlace[next] = next;
+        
+          if (data.pageObjs[next].hasClass('fixed'))
+            data.pageWrap[next] = data.pageWrap[page].
+              attr('page', next);
+          else
+            data.pageWrap[next] = data.pageWrap[page].
+              css(turnMethods._pageSize.call(this, next, true)).
+              attr('page', next);
+      
+            if (data.pages[page])
+              data.pages[next] = data.pages[page].
+                flip('options', {
+                  page: next,
+                  next: (single || odd) ? next+1 : next-1
+                });
+        }
+        delete data.pages[page];
+        delete data.pagePlace[page];
+        delete data.pageZoom[page];
+        delete data.pageObjs[page];
+        delete data.pageWrap[page];
+        this.trigger('missing', [[page]]);
+    }
+    this.turn('update');
+  },
+
   // Moves pages
 
   _movePages: function(from, change) {
